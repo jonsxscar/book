@@ -9,12 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
-    public function index()
-    {
-        $reservations = Reservation::all();
-        return view('reservation.index', ['reservations' => $reservations]);
-    }
-
     public function create($id)
     {
         $book = Book::find($id);
@@ -49,14 +43,4 @@ class ReservationController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Reserva eliminada con éxito.');
     }
-
-
-
-/*     public function index()
-{
-$reservations = $user->reservations()->active()->get();
-return view('reservation.index', ['reservations' => $reservations]);
-}  */
-
-    // Agrega aquí más métodos según sea necesario
 }

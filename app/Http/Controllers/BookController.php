@@ -13,7 +13,6 @@ class BookController extends Controller
         return view('book.index', ['books' => $books]);
     }
 
-    // Agrega aquí más métodos según sea necesario
     public function filter(Request $request)
 {
     $category = $request->input('category');

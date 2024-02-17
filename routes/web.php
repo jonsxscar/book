@@ -17,17 +17,13 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 // Rutas para la información de la cuenta del usuario
 Route::get('/dashboard', [UserController::class, 'showDashboard'])->name('dashboard')->middleware('auth');
 
-// Rutas para la información de la cuenta del usuario creo borrar
-Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
-
 // Rutas para las reservas del usuario
 Route::get('/books/{id}/reserve', [ReservationController::class, 'create'])->name('reservations.create');
-Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+//Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
 // Rutas para los libros disponibles
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
-Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
 Route::post('/books/{id}/reserve', [ReservationController::class, 'store'])->name('reservations.store');
 Route::get('/filter', [BookController::class, 'filter']);
 
