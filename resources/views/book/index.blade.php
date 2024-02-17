@@ -7,7 +7,8 @@
             <div>
                 <h2>{{ $book->title }}</h2>
                 <p>Autor: {{ $book->author }}</p>
-                <!-- Agrega aquí más información sobre el libro -->
+                <p>Descripción: {{ $book->description }}</p>
+                <img src="{{ $book->image }}" alt="Imagen del libro">
             </div>
         @endforeach
     </div>
