@@ -28,3 +28,6 @@ Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
 Route::post('/books/{id}/reserve', [ReservationController::class, 'store'])->name('reservations.store');
+Route::get('/filter', [BookController::class, 'filter']);
+
+

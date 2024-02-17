@@ -16,6 +16,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+            <a href="{{ route('register') }}" class="btn btn-secondary">Registrarse</a>
         </form>
     </div>
 @endsection

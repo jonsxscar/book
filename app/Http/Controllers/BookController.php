@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Http\Request; // Asegúrate de tener esta línea
 
 class BookController extends Controller
 {
@@ -13,4 +14,10 @@ class BookController extends Controller
     }
 
     // Agrega aquí más métodos según sea necesario
+    public function filter(Request $request)
+    {
+        $category = $request->input('category');
+        $books = Book::where('category', $category)->get();
+        return view('partials.book_list', ['books' => $books]);
+    }
 }

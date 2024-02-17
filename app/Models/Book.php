@@ -14,6 +14,7 @@ class Book extends Model
         'author',
         'description',
         'image',
+        'category',
         // otros campos necesarios
     ];
 
