@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Reservar {{ $book->title }}</h1>
-        <form method="POST" action="{{ route('reservations.store') }}">
+        <form method="POST" action="{{ route('reservations.store', ['id' => $book->id]) }}">
             @csrf
 
             <input type="hidden" name="book_id" value="{{ $book->id }}">

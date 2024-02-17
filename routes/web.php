@@ -21,6 +21,7 @@ Route::get('/dashboard', [UserController::class, 'showDashboard'])->name('dashbo
 Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
 
 // Rutas para las reservas del usuario
+Route::get('/books/{id}/reserve', [ReservationController::class, 'create'])->name('reservations.create');
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 

@@ -23,8 +23,9 @@
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->author }}</td>
                     <td>
-                        <a href="/reservations/{{ $book->id }}" class="btn btn-primary">Reservar</a>
-                        <button class="btn btn-secondary show-more" data-description="{{ $book->description }}" data-image="{{ $book->image }}" data-category="{{ $book->category }}">Mostrar más</button>
+                        <a href="{{ route('reservations.create', ['id' => $book->id]) }}" class="btn btn-primary">Reservar</a>
+                        <button class="btn btn-secondary show-more" data-id="{{ $book->id }}" data-description="{{ $book->description }}" data-image="{{ $book->image }}" data-category="{{ $book->category }}">Mostrar más</button>
+
                     </td>
                 </tr>
             @endforeach
@@ -39,6 +40,7 @@
             <p id="bookDescription"></p>
             <img id="bookImage" src="" alt="Imagen del libro">
             <p id="bookCategory"></p>
+            <a id="bookReserve" href="" class="btn btn-primary">Reservar</a>
         </div>
     </div>
 
@@ -54,12 +56,14 @@
             var description = $(this).data('description');
             var image = $(this).data('image');
             var category = $(this).data('category');
+            var id = $(this).data('id');
 
         $('#bookTitle').text(title); 
         $('#bookAuthor').text('Autor: ' + author); 
         $('#bookDescription').text('Descripción: ' + description);
         $('#bookImage').attr('src', image);
         $('#bookCategory').text('Categoría: ' + category);
+        $('#bookReserve').attr('href', '/books/' + id + '/reserve');
 
         modal.style.display = "block";
         });

@@ -25,6 +25,11 @@
                         @foreach ($reservations as $reservation)
                             <p>{{ $reservation->book->title }} - {{ $reservation->start_date }} a
                                 {{ $reservation->end_date }}</p>
+                            <form method="POST" action="{{ route('reservations.destroy', ['id' => $reservation->id]) }}" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar reserva</button>
+                            </form>
                         @endforeach
                     </div>
                 </div>
