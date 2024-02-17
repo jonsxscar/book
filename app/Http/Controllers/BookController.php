@@ -15,9 +15,14 @@ class BookController extends Controller
 
     // Agrega aquí más métodos según sea necesario
     public function filter(Request $request)
-    {
-        $category = $request->input('category');
+{
+    $category = $request->input('category');
+    if ($category) {
         $books = Book::where('category', $category)->get();
-        return view('partials.book_list', ['books' => $books]);
+    } else {
+        $books = Book::all();
     }
+    return view('partials.book_list', ['books' => $books]);
+}
+
 }

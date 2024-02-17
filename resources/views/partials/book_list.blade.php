@@ -1,8 +1,10 @@
 @foreach ($books as $book)
-    <div class="book">
-        <h2>{{ $book->title }}</h2>
-        <p>Autor: {{ $book->author }}</p>
-        <p>Descripción: {{ $book->description }}</p>
-        <img src="{{ $book->image }}" alt="Imagen del libro">
-    </div>
+    <tr>
+        <td>{{ $book->title }}</td>
+        <td>{{ $book->author }}</td>
+        <td>
+            <a href="/reservations/{{ $book->id }}" class="btn btn-primary">Reservar</a>
+            <button class="btn btn-secondary show-more" data-description="{{ $book->description }}" data-image="{{ $book->image }}" data-category="{{ $book->category }}">Mostrar más</button>
+        </td>
+    </tr>
 @endforeach

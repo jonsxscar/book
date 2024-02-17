@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Mi Aplicación</title>
     <!-- Aquí puedes incluir tus hojas de estilo CSS -->
+    @stack('styles') <!-- Agrega esta línea -->
 </head>
 
 <body>
