@@ -28,30 +28,29 @@ class Reservation extends Model
     }
 
     public function scopeActive($query)
-{
-    return $query->where('end_date', '>', now());
-}
+    {
+        return $query->where('end_date', '>', now());
+    }
 
-public function store(Request $request)
-{
-    // Valida los datos del formulario
-    $request->validate([
-        'book_id' => ['required', 'exists:books,id'],
-        'reservation_length' => ['required', 'integer', 'min:1'],
-    ]);
+    public function store(Request $request)
+    {
+        // Valida los datos del formulario
+        $request->validate([
+            'book_id' => ['required', 'exists:books,id'],
+            'reservation_length' => ['required', 'integer', 'min:1'],
+        ]);
 
-    // Crea la reserva
-    $reservation = new Reservation;
-    $reservation->user_id = Auth::id();
-    $reservation->book_id = $request->book_id;
-    $reservation->reservation_date = now();
-    $reservation->reservation_length = $request->reservation_length;
-    $reservation->end_date = now()->addDays($request->reservation_length);
-    $reservation->save();
+        // Crea la reserva
+        $reservation = new Reservation;
+        $reservation->user_id = Auth::id();
+        $reservation->book_id = $request->book_id;
+        $reservation->reservation_date = now();
+        $reservation->reservation_length = $request->reservation_length;
+        $reservation->end_date = now()->addDays($request->reservation_length);
+        $reservation->save();
 
-    // Redirige al usuario al dashboard con un mensaje de éxito
-    return redirect()->route('dashboard')->with('success', 'Libro reservado con éxito.');
-}
-
+        // Redirige al usuario al dashboard con un mensaje de éxito
+        return redirect()->route('dashboard')->with('success', 'Libro reservado con éxito.');
+    }
 
 }
