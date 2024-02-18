@@ -21,8 +21,8 @@
             <tbody>
             @foreach ($books as $book)
                 <tr>
-                    <td>{{ $book->title }}</td>
-                    <td>{{ $book->author }}</td>
+                    <td style="text-align: center;">{{ $book->title }}</td>
+                    <td style="text-align: center;">{{ $book->author }}</td>
                     <td>
                         <button class="btn btn-primary reserve-button" style="background: #313139; color: white;" data-id="{{ $book->id }}">Reservar</button>
                         <button class="btn btn-secondary show-more" data-id="{{ $book->id }}" data-description="{{ $book->description }}" data-image="{{ $book->image }}" data-category="{{ $book->category }}">Mostrar más</button>

@@ -30,8 +30,8 @@
                 <tbody>
                     @foreach ($reservations as $reservation)
                         <tr>
-                            <td>{{ $reservation->book->title }}</td>
-                            <td>{{ $reservation->end_date }}</td>
+                            <td style="text-align: center;">{{ $reservation->book->title }}</td>
+                            <td style="text-align: center;">{{ $reservation->end_date }}</td>
                             <td>
                                 <form method="POST" action="{{ route('reservations.destroy', ['id' => $reservation->id]) }}">
                                     @csrf

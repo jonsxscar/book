@@ -16,6 +16,10 @@
 
                 <button type="submit" class="btn btn-primary" style="width: 100%; background: #313139; color: white;">Reservar</button>
             </form>
+            <form method="GET" action="{{ route('books.index') }}" style="margin-top: 10px;">
+                @csrf
+                <button type="submit" class="btn btn-primary" style="width: 100%; background: #313139; color: white;">Regresar</button>
+            </form>
         </div>
     </div>
 @endsection

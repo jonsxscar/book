@@ -14,16 +14,15 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    // Agrega aquí más métodos según sea necesario
     public function login(Request $request)
     {
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Autenticación exitosa, redirige a donde quieras
+            // Autenticación exitosa, redirige a dashboard
             return redirect()->intended('dashboard');
         } else {
-            // Autenticación fallida, redirige de nuevo al formulario de inicio de sesión
+            // Autenticación fallida
             return redirect()->back()->with('error', 'Las credenciales proporcionadas no son correctas.');
         }
     }
@@ -49,7 +48,7 @@ class UserController extends Controller
             'name' => $request->name,
         ]);
 
-        // Redirige al usuario a donde quieras
+        // Redirige al usuario 
         return redirect()->route('login')->with('success', 'Registro exitoso. Ahora puedes iniciar sesión.');
     }
 
