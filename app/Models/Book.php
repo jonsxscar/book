@@ -15,7 +15,6 @@ class Book extends Model
         'description',
         'image',
         'category',
-        // otros campos necesarios
     ];
 
     public function reservations()
