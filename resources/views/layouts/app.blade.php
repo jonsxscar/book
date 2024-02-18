@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Mi Aplicación</title>
-    <!-- Aquí puedes incluir tus hojas de estilo CSS -->
-    @stack('styles') <!-- Agrega esta línea -->
+    <!-- Include your CSS stylesheets here -->
+    @stack('styles')
     <style>
         #message {
             visibility: hidden;
@@ -38,10 +38,10 @@
         @yield('content')
     </div>
 
-    <!-- Notificación para los mensajes de éxito y error -->
+    <!-- Notification for success and error messages-->
     <div id="message">{{ session('success') ?? session('error') }}</div>
 
-    <!-- Aquí puedes incluir tus scripts de JavaScript -->
+    <!-- JavaScript scripts -->
     <script>
         window.onload = function() {
             var message = document.getElementById('message');

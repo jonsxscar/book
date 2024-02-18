@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
     ];
 
+    // Define a one-to-many relationship with the Reservation model
     public function reservations()
     {
         return $this->hasMany(Reservation::class);

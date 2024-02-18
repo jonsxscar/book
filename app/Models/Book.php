@@ -9,6 +9,7 @@ class Book extends Model
 {
     use HasFactory;
 
+    // The attributes that are mass assignable.
     protected $fillable = [
         'title',
         'author',
@@ -17,6 +18,7 @@ class Book extends Model
         'category',
     ];
 
+    // Define a one-to-many relationship with the Reservation model
     public function reservations()
     {
         return $this->hasMany(Reservation::class);

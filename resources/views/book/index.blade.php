@@ -4,12 +4,14 @@
     <div class="container" style="display: flex; flex-direction: column; align-items: center;">
         <h1 style="text-align: center;">Libros disponibles</h1>
         <button onclick="window.location.href='{{ route('dashboard') }}'" class="btn btn-primary" style="margin-bottom: 20px; background: #313139; color: white;">Datos de usuario</button>
+        {{-- options to filter--}}
         <select id="category">
             <option value="">Todas las categorías</option>
             <option value="Novela">Novela</option>
             <option value="Ciencia ficción">Ciencia ficción</option>
             <option value="Realismo mágico">Realismo mágico</option>
         </select>
+        {{-- make table --}}
         <table id="book-list" class="table" style="table-layout: fixed; width: 600px;">
             <thead>
                 <tr>
@@ -32,13 +34,17 @@
             </tbody>
         </table>
     </div>
+    {{-- Modal --}}
     <div id="bookModal" class="modal">
         <div class="modal-content">
+            {{-- Create a close button for the modal --}}
             <span class="close">×</span>
+            {{-- Create placeholders for the book details --}}
             <h2 id="bookTitle"></h2> 
             <p id="bookAuthor"></p> 
             <p id="bookDescription"></p>
             <p id="bookCategory"></p>
+            {{-- Create a container for the book image and reserve button --}}
             <div style="display: flex; align-items: stretch; flex-direction: column">
             <img id="bookImage" src="" alt="Imagen del libro" style="max-width: 300px;">
             <button id="bookReserve" class="btn btn-primary" style="background: #313139; color: white;" >Reservar</button>
@@ -46,18 +52,20 @@
         </div>
     </div>
 
+    {{-- Include jQuery --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
             var modal = document.getElementById("bookModal");
             var span = document.getElementsByClassName("close")[0];
 
+            //When a reserve button is clicked, redirect to the reserve page for the book
             $(document).on('click', '.reserve-button', function() {
     var id = $(this).data('id');
     window.location.href = '/books/' + id + '/reserve';
 });
 
-
+        //When a show-more button is clicked, display the book details in the modal
         $(document).on('click', '.show-more', function() {
             var title = $(this).parent().prev().prev().text(); 
             var author = $(this).parent().prev().text(); 
@@ -79,16 +87,19 @@
         modal.style.display = "block";
         });
 
+        //When the close button is clicked, hide the modal
         span.onclick = function() {
         modal.style.display = "none";
         }
 
+        //When anywhere outside the modal is clicked, hide the modal
         window.onclick = function(event) {
             if (event.target == modal) {
             modal.style.display = "none";
             }
         }
-
+        
+        //When the category is changed, filter the book list by category
         $('#category').on('change', function() {
             var category = $(this).val();
         $.ajax({
