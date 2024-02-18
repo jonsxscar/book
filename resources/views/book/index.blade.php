@@ -10,12 +10,12 @@
             <option value="Ciencia ficción">Ciencia ficción</option>
             <option value="Realismo mágico">Realismo mágico</option>
         </select>
-        <table id="book-list" class="table">
+        <table id="book-list" class="table" style="table-layout: fixed; width: 600px;">
             <thead>
                 <tr>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Acciones</th>
+                    <th style="width: 40%;">Título</th>
+                    <th style="width: 40%;">Autor</th>
+                    <th style="width: 40%;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,8 +24,8 @@
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->author }}</td>
                     <td>
-                    <button class="btn btn-primary reserve-button" style="background: #313139; color: white;" data-id="{{ $book->id }}">Reservar</button>
-                    <button class="btn btn-secondary show-more" data-id="{{ $book->id }}" data-description="{{ $book->description }}" data-image="{{ $book->image }}" data-category="{{ $book->category }}">Mostrar más</button>
+                        <button class="btn btn-primary reserve-button" style="background: #313139; color: white;" data-id="{{ $book->id }}">Reservar</button>
+                        <button class="btn btn-secondary show-more" data-id="{{ $book->id }}" data-description="{{ $book->description }}" data-image="{{ $book->image }}" data-category="{{ $book->category }}">Mostrar más</button>
                     </td>
                 </tr>
             @endforeach
