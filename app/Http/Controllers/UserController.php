@@ -37,9 +37,9 @@ class UserController extends Controller
     {
         // Valida los datos del formulario
         $request->validate([
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:25', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'name' => ['required', 'string', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:25', 'unique:users'],
         ]);
 
         // Crea el usuario
@@ -50,7 +50,7 @@ class UserController extends Controller
         ]);
 
         // Redirige al usuario a donde quieras
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Registro exitoso. Ahora puedes iniciar sesión.');
     }
 
     public function showDashboard()

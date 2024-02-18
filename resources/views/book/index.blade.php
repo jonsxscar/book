@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>Libros disponibles</h1>
+    <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+        <h1 style="text-align: center;">Libros disponibles</h1>
+        <button onclick="window.location.href='{{ route('dashboard') }}'" class="btn btn-primary" style="margin-bottom: 20px; background: #313139; color: white;">Datos de usuario</button>
         <select id="category">
             <option value="">Todas las categorías</option>
             <option value="Novela">Novela</option>
@@ -23,8 +24,8 @@
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->author }}</td>
                     <td>
-                        <a href="{{ route('reservations.create', ['id' => $book->id]) }}" class="btn btn-primary">Reservar</a>
-                        <button class="btn btn-secondary show-more" data-id="{{ $book->id }}" data-description="{{ $book->description }}" data-image="{{ $book->image }}" data-category="{{ $book->category }}">Mostrar más</button>
+                    <button class="btn btn-primary reserve-button" style="background: #313139; color: white;" data-id="{{ $book->id }}">Reservar</button>
+                    <button class="btn btn-secondary show-more" data-id="{{ $book->id }}" data-description="{{ $book->description }}" data-image="{{ $book->image }}" data-category="{{ $book->category }}">Mostrar más</button>
                     </td>
                 </tr>
             @endforeach
@@ -37,9 +38,11 @@
             <h2 id="bookTitle"></h2> 
             <p id="bookAuthor"></p> 
             <p id="bookDescription"></p>
-            <img id="bookImage" src="" alt="Imagen del libro">
             <p id="bookCategory"></p>
-            <a id="bookReserve" href="" class="btn btn-primary">Reservar</a>
+            <div style="display: flex; align-items: stretch; flex-direction: column">
+            <img id="bookImage" src="" alt="Imagen del libro" style="max-width: 300px;">
+            <button id="bookReserve" class="btn btn-primary" style="background: #313139; color: white;" >Reservar</button>
+            </div>
         </div>
     </div>
 
@@ -48,6 +51,12 @@
         $(document).ready(function() {
             var modal = document.getElementById("bookModal");
             var span = document.getElementsByClassName("close")[0];
+
+            $(document).on('click', '.reserve-button', function() {
+    var id = $(this).data('id');
+    window.location.href = '/books/' + id + '/reserve';
+});
+
 
         $(document).on('click', '.show-more', function() {
             var title = $(this).parent().prev().prev().text(); 
@@ -62,7 +71,10 @@
         $('#bookDescription').text('Descripción: ' + description);
         $('#bookImage').attr('src', image);
         $('#bookCategory').text('Categoría: ' + category);
-        $('#bookReserve').attr('href', '/books/' + id + '/reserve');
+        $('#bookReserve').click(function() {
+    window.location.href = '/books/' + id + '/reserve';
+});
+
 
         modal.style.display = "block";
         });
@@ -90,6 +102,35 @@
 });
 
     </script>
+
+<style>
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #8d8b8d;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .table {
+            margin-top: 20px;
+            background: #f8f9fa;
+        }
+
+        .table th, .table td {
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .table th {
+            background-color: #e9ecef;
+        }
+
+        .btn {
+            margin-top: 20px;
+        }
+    </style>
 @endsection
 
 @push('styles')
@@ -109,10 +150,12 @@
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 300px;  /* Ancho fijo */
+  height: 420px; /* Altura fija */
+  overflow: auto;
 }
 
 .close {

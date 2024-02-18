@@ -10,7 +10,7 @@
 
             <div class="form-group">
                 <label for="reservation_length">Cantidad de días</label>
-                <input type="number" name="reservation_length" id="reservation_length" class="form-control">
+                <input type="number" name="reservation_length" id="reservation_length" class="form-control" min="1">
             </div>
 
             <button type="submit" class="btn btn-primary">Reservar</button>
